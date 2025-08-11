@@ -10,12 +10,14 @@ const forecast = (latitude, longitude, callback) => {
       callback("Unable to find location. Please try again.", undefined);
     } else {
       const data = body.current;
+      const feelslike = data.feelslike;
+      const humidity = data.humidity;
       const temperature = data.temperature;
       const precip = data.precip;
       const weatherDescription = data.weather_descriptions[0];
       callback(
         undefined,
-        `${weatherDescription}. The temperature is currently ${temperature}°C and the precipitation chances are ${precip}%`
+        `${weatherDescription}. The temperature is currently ${temperature}°C, feels like ${feelslike}°C, the humidity is ${humidity}%, and the precipitation chances are ${precip}%`
       );
     }
   });
